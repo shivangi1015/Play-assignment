@@ -1,0 +1,36 @@
+@(user: services.UserInfo)
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @* Here's where we render the page title `String`. *@
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css")">
+     </head>
+    <body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+           <strong> My Profile </strong>
+        </div>
+       <div>
+
+       </div>
+    </div>
+</nav>
+
+UserName:  @user.username  <br>
+Full name: @user.fname @user.lname   <br>
+Gender: @user.gender
+
+
+
+
+    </body>
+</html>
+
+
