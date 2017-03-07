@@ -41,7 +41,7 @@ class signupController @Inject() extends Controller {
   def addPerson= Action { implicit request =>
 
       val user:UserInfo = userForm.bindFromRequest.get
-      UserOperation.addUser(user) //adding user not tested yet
+      UserOperation.addUser(user)
       Ok(views.html.Profile(user))
     }
 
