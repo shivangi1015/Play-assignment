@@ -2,12 +2,14 @@ package controllers
 
 import javax.inject._
 
+import Models.LoginData
 import play.api.Logger
+import play.api.cache.CacheApi
 import play.api.data.Forms._
 import play.api.data._
 
 import play.api.mvc._
-import services.{LoginData, UserOperation, UserInfo}
+import services.UserOperation
 
 
 /**
@@ -15,7 +17,7 @@ import services.{LoginData, UserOperation, UserInfo}
   * application's home page.
   */
 @Singleton
-class LoginController @Inject() extends Controller {
+class LoginController @Inject() (cache: CacheApi) extends Controller {
 
   /**
     * Create an Action to render an HTML page with a welcome message.
@@ -36,12 +38,19 @@ class LoginController @Inject() extends Controller {
     )(LoginData.apply)(LoginData.unapply)
   }
 
-  val users = UserOperation.getUsers
+//  val users = UserOperation.getUsers
 
 
-  def showProfile(name:String) = Action {implicit request =>
-    val result = users.flatMap(user=>if(user.username == name) Some(user) else None)
-    Ok(views.html.Profile(result.toList.head))
+  def showProfile(name:String) = Action {
+    implicit request =>
+    //val result = users.flatMap(user=>if(user.username == name) Some(user) else None)
+      val data=cache.get[Models.UserInfo](name)
+      if(data.get.isadmin == false)
+      Ok(views.html.Profile(data.toList.head))
+      else
+        Ok(views.html.Admin(data.toList.head))
+
+
   }
 
 
@@ -53,14 +62,22 @@ class LoginController @Inject() extends Controller {
       },
       userData => {
 
-        val flag = users.map(x => if(x.username == userData.username && x.password == userData.password) true else false)
+        // val flag = users.map(x => if(x.username == userData.username && x.password == userData.password) true else false).toList
+        val data=cache.get[Models.UserInfo](userData.username)
+        val encrypt = UserOperation.hash(userData.password)
+      println(encrypt)
+        val flag=data.map(x => if(x.username == userData.username && x.password == encrypt) true else false)
+        println(flag)
+
         if(flag.contains(true)){
+          println("inside iff")
+         Redirect(routes.LoginController.showProfile(userData.username))
 
-          Redirect(routes.LoginController.showProfile(userData.username)).withSession("currentUser"->userData.username).flashing("msg"->"Login Successful")
         }
-        else
-          Redirect(routes.HomeController.index()).flashing("msg"->"Incorrect username or password")
-
+        else {
+          println("inside else")
+          Redirect(routes.HomeController.index()).flashing("msg" -> "Incorrect username or password")
+        }
       }
     )
   }

@@ -13,16 +13,19 @@
     <body>
 
 
-
 <nav class="navbar navbar-inverse ">
 <div class="container-fluid">
 <div class="navbar-header">
-<a class="navbar-brand">User Information</a>
+<a class="navbar-brand">Admin</a>
 </div>
 
 
 <form action="@routes.HomeController.index()" method="post">
-<button class="btn btn-success navbar-btn navbar-right ">Logout</button>
+<button class="btn btn-danger navbar-btn navbar-right ">Logout</button>
+</form>
+<form action="@routes.HomeController.index()" method="post">
+<button class="btn btn-success navbar-btn navbar-right ">Manage Users</button>
+
 </form>
 </div>
 </nav>
@@ -35,6 +38,8 @@
 <strong>Email: </strong> @user.email
 
 </div>
+
+
 
     </body>
 </html>
