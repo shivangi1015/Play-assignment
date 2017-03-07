@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject._
 
+import play.api.Logger
 import play.api.data.Forms._
 import play.api.data._
 
@@ -28,7 +29,7 @@ class LoginController @Inject() extends Controller {
 
   val userForm: Form[LoginData] = Form {
     mapping(
-      "name" -> nonEmptyText,
+      "username" -> nonEmptyText,
       "password" -> nonEmptyText
 
 
@@ -47,14 +48,15 @@ class LoginController @Inject() extends Controller {
   def processForm= Action{ implicit request =>
     userForm.bindFromRequest.fold (
       formWithErrors => {
+        Logger.info("error")
         Redirect(routes.HomeController.index()).flashing("Error Message"->"Incorrect username or password")
       },
       userData => {
-        val currentUser = userForm.bindFromRequest.get
-        val flag = users.map(x => if(x.username == services.UserInfo.username && x.password == services.UserInfo.password) true else false)
+
+        val flag = users.map(x => if(x.username == userData.username && x.password == userData.password) true else false)
         if(flag.contains(true)){
 
-          Redirect(routes.LoginController.showProfile(UserInfo.username)).withSession("currentUser"->userData.username).flashing("msg"->"Login Successful")
+          Redirect(routes.LoginController.showProfile(userData.username)).withSession("currentUser"->userData.username).flashing("msg"->"Login Successful")
         }
         else
           Redirect(routes.HomeController.index()).flashing("msg"->"Incorrect username or password")

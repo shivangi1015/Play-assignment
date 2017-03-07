@@ -18,7 +18,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 POST    /addPerson                    controllers.signupController.addPerson
 
-POST    /getProfile                           controllers.LoginController.getProfile
+
+POST     /                           controllers.HomeController.index
 
 POST /showProfile                        controllers.LoginController.processForm
 GET /profile                            controllers.LoginController.showProfile(username:String)

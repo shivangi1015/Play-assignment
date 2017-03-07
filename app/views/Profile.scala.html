@@ -15,20 +15,23 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-           <strong> My Profile </strong>
+           <div class="col-md-10"><strong> My Profile </strong></div>
+         <div class="col-md-2">  <form method="post" action="@routes.HomeController.index()">
+            <button type="submit" class="btn btn-success">Logout</button></div>
+
+</form>
         </div>
        <div>
 
        </div>
     </div>
 </nav>
-
-UserName:  @user.username  <br>
-Full name: @user.fname @user.lname   <br>
-Gender: @user.gender
-
-
-
+<div style="text-align:center;">
+<strong>UserName: </strong>  @user.username  <br>
+<strong>Full name: </strong> @user.fname @user.lname   <br>
+<strong>Gender: </strong> @user.gender  <br>
+<strong>Date of Birth: </strong> @user.dob
+</div>
 
     </body>
 </html>
