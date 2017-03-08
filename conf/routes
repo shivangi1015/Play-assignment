@@ -22,7 +22,16 @@ POST    /addPerson                    controllers.signupController.addPerson
 POST     /                           controllers.HomeController.index
 
 POST /showProfile                        controllers.LoginController.processForm
+
 GET /profile                            controllers.LoginController.showProfile(username:String)
+
+POST /manage                                   controllers.AdminController.manageUsers
+
+POST /usersuspended                                   controllers.AdminController.suspend(s: String)
+
+POST /userResumed                                   controllers.AdminController.resume(s: String)
+
+
 
 
 

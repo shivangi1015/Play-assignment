@@ -1,5 +1,8 @@
 package services
 
+import Models.UserInfo
+
+import scala.collection.mutable.ListBuffer
 
 
 // import scala.collection.mutable.ListBuffer
@@ -19,6 +22,8 @@ object UserOperation {
 //
 //
 //  def getUsers:ListBuffer[UserInfo]= listOfUsers
+val listOfUsersNames = new ListBuffer[String]()
+
 
   def hash(s: String) = {
     val m = java.security.MessageDigest.getInstance("MD5")
