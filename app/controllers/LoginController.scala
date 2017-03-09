@@ -19,7 +19,7 @@ import scala.collection.mutable.ListBuffer
   * application's home page.
   */
 @Singleton
-class LoginController @Inject() (cache: CacheApi,cacheService: CacheTrait) extends Controller {
+class LoginController @Inject() (cacheService: CacheTrait) extends Controller {
 
   /**
     * Create an Action to render an HTML page with a welcome message.
@@ -58,9 +58,15 @@ class LoginController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
 //      else
 //        Ok(views.html.Admin(data.toList.head))
 
+//      data match {
+//        case Some(x) if(x.isadmin == false) => Ok(views.html.Profile(data.toList.head))
+//        case _ =>    Ok(views.html.Admin(data.toList.head))
+//      }
+
       data match {
-        case Some(x) if(x.isadmin == false) => Ok(views.html.Profile(data.toList.head))
-        case _ =>    Ok(views.html.Admin(data.toList.head))
+        case Some(x) if(x.isadmin == true) => Ok(views.html.Admin(x))
+        case Some(x) if(x.isadmin == false) => Ok(views.html.Profile(x))
+
       }
   }
 

@@ -1,6 +1,8 @@
+package RouteTest
+
 import org.scalatestplus.play._
-import play.api.test._
 import play.api.test.Helpers._
+import play.api.test._
 
 class HomeControllerSpec extends PlaySpec with OneAppPerTest{
 

@@ -15,6 +15,7 @@ class ServiceCache @Inject() (cache: CacheApi) extends CacheTrait {
     def setcache(value:String,newObject:UserInfo)={
 
       cache.set(value, newObject)
+      true
     }
     def getcache(value:String)={
 

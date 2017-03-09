@@ -9,10 +9,7 @@ import services.{CacheTrait, UserOperation}
 
 import scala.collection.mutable.ListBuffer
 
-/**
-  * Created by knoldus on 8/3/17.
-  */
-class AdminController @Inject() (cache: CacheApi,cacheService: CacheTrait) extends Controller {
+class AdminController @Inject() (cacheService: CacheTrait) extends Controller {
 
   def manageUsers = Action {
     implicit request =>
@@ -24,7 +21,7 @@ class AdminController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
 
   def suspend(user: String) = Action {
     implicit request =>
-      val suspendedUser = cache.get[Models.UserInfo](user)
+      val suspendedUser = cacheService.getcache(user)
 //      val userStatus = suspendedUser.get.copy(status = false)
 //      cacheService.setcache(user,userStatus)
       suspendedUser match{
@@ -40,7 +37,7 @@ class AdminController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
 
   def resume(user: String) = Action {
     implicit request =>
-      val resumedUser = cache.get[Models.UserInfo](user)
+      val resumedUser = cacheService.getcache(user)
 //      val userStatus = resumedUser.get.copy(status = true)
 //      cacheService.setcache(user,userStatus)
       resumedUser match{

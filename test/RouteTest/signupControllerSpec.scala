@@ -1,6 +1,8 @@
+package RouteTest
+
 import org.scalatestplus.play._
-import play.api.test._
 import play.api.test.Helpers._
+import play.api.test._
 
 /**
   * Created by knoldus on 8/3/17.
@@ -29,10 +31,5 @@ class signupControllerSpec extends PlaySpec with OneAppPerTest {
 
     }
 
-
-    //  "render the Profile page with session" in {
-    //    val signup = route(app,FakeRequest(GET, "/showProfile").withSession("username" -> "Shivangi1015","fname" -> "Shivangi","mname" -> "xyz","lname" -> "Gupta","email" -> "s1@gmail.com","password" -> "123", "repassword" -> "123", "gender" ->"female", "dob" -> "18-11-92", "isadmin" -> "true")).get
-    //    contentType(signup) mustBe Some("text/html")
-    //  }
   }
 

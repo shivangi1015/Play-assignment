@@ -1,4 +1,4 @@
-@(list: List[String])()(implicit flash: Flash)
+@(list: List[String])()
 
 @main("user profiles description") {
 
@@ -9,47 +9,15 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Go Back</a></li>
             <li><a href="@routes.HomeController.index()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>
 </nav>
 
-<!--<div class="container">-->
-
-    <!--<div class="modal" id="myModal" role="dialog">-->
-        <!--<div class="modal-dialog">-->
-
-
-            <!--<div class="modal-content">-->
-                <!--<div class="modal-header">-->
-                    <!--<h4 class="modal-title">User details</h4>-->
-                <!--</div>-->
-                <!--<div class="modal-body">-->
-                    <!--<p>-->
-                        <!--@for(l <- list){-->
-                        <!--@l   <button type="submit" class="btn btn-success">Resume</button> <button type="submit" class="btn btn-danger">Suspend</button>-->
-
-                    <!---->
-                        <!--<br>-->
-
-                        <!--}-->
-                    <!--</p>-->
-                <!--</div>-->
-
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
 
 
 <div class="container" style="font-size:20px;margin-top:30px;">
 <p>
-    <div class="container">
-        @flash.get("status").getOrElse("")
-    </div>
     @for(l <- list){
    <div class="col-md-5"><strong> @l </strong>
 </div>

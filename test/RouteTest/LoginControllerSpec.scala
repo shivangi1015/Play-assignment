@@ -1,10 +1,10 @@
-import org.scalatestplus.play._
-import play.api.test._
-import play.api.test.Helpers._
+package RouteTest
 
-/**
-  * Created by knoldus on 8/3/17.
-  */
+import org.scalatestplus.play._
+import play.api.test.Helpers._
+import play.api.test._
+
+
 class LoginControllerSpec extends PlaySpec with OneAppPerTest {
 
   "Login" should {
@@ -26,11 +26,11 @@ class LoginControllerSpec extends PlaySpec with OneAppPerTest {
     }
   }
 
-//  "profile route" should{
-//
-//    "show the Profile page" in{
-//      val login = route(app, FakeRequest(GET, "/profile")).get
-//      status(login) mustBe (OK)
-//    }
-//  }
+  "profile route" should{
+
+    "show the Profile page" in{
+      val login = route(app, FakeRequest(GET, "/profile")).get
+      status(login) mustBe 303
+    }
+  }
 }

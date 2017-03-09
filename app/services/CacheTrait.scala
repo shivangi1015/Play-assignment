@@ -7,7 +7,7 @@ import Models.UserInfo
   */
 trait CacheTrait {
 
-    def setcache(value:String,userObject:UserInfo)
+    def setcache(value:String,userObject:UserInfo): Boolean
     def getcache(value:String):Option[UserInfo]
 
 
