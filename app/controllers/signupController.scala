@@ -25,8 +25,8 @@ class signupController @Inject() (cache: CacheApi,cacheService: CacheTrait) exte
     * will be called when the application receives a `GET` request with
     * a path of `/`.
     */
-  def signup = Action {
-    Ok(views.html.signup())
+  def signup = Action { implicit request =>
+    Ok(views.html.signup()).flashing("a" -> "a")
   }
 
 
@@ -76,8 +76,9 @@ class signupController @Inject() (cache: CacheApi,cacheService: CacheTrait) exte
         {
           println("Unique username")
 
-          if(userData.password != userData.repassword)
-            Redirect(routes.HomeController.index()).flashing("PasswordMismatch"->"Pasword does nt match")
+          if(userData.password != userData.repassword) {
+            Redirect(routes.signupController.signup()).flashing("PasswordMismatch" -> "Pasword does nt match!! Fill details again!")
+          }
           else {
            // UserOperation.addUser(userData)
            val encrypt = UserOperation.hash(userData.password)
@@ -93,7 +94,7 @@ class signupController @Inject() (cache: CacheApi,cacheService: CacheTrait) exte
         }
         else {
           Logger.info("username already taken")
-          Redirect(routes.HomeController.index()).flashing("Already_Exist" -> "Username is already taken")
+          Redirect(routes.signupController.signup()).flashing("Exist" -> "Username already exists!!")
         }
 
 

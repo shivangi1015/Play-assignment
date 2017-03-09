@@ -27,8 +27,8 @@ class LoginController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
     * will be called when the application receives a `GET` request with
     * a path of `/`.
     */
-  def login = Action {
-    Ok(views.html.welcome())
+  def login = Action { implicit request =>
+    Ok(views.html.welcome()).flashing()
   }
 
   val userForm: Form[LoginData] = Form {
@@ -50,13 +50,18 @@ class LoginController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
     implicit request =>
     //val result = users.flatMap(user=>if(user.username == name) Some(user) else None)
       val data=cacheService.getcache(name)
+      println("data cache :  "+data)
+//      if(data.get.isadmin == false)
+//      {
+////      if(data.map(x => x.isadmin == false))
+//      Ok(views.html.Profile(data.toList.head)) }
+//      else
+//        Ok(views.html.Admin(data.toList.head))
 
-      if(data.get.isadmin == false)
-      Ok(views.html.Profile(data.toList.head))
-      else
-        Ok(views.html.Admin(data.toList.head))
-
-
+      data match {
+        case Some(x) if(x.isadmin == false) => Ok(views.html.Profile(data.toList.head))
+        case _ =>    Ok(views.html.Admin(data.toList.head))
+      }
   }
 
 
@@ -80,14 +85,17 @@ class LoginController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
 
           if (flag.contains(true)) {
             println("inside iff")
-            if (data.get.status)
-            Redirect(routes.LoginController.showProfile(userData.username))
-            else {
-              println("user blocked!!")
-              Redirect(routes.HomeController.index())
+//            if (data.get.status)
+//            Redirect(routes.LoginController.showProfile(userData.username))
+//            else {
+//              println("user blocked!!")
+//              Redirect(routes.HomeController.index())
+//            }
+
+            data match{
+              case Some(x) if(x.status)  => Redirect(routes.LoginController.showProfile(userData.username)).flashing("Status"->"User Blocked")
+              case _ =>  Redirect(routes.HomeController.index())
             }
-
-
 
           }
           else {
@@ -107,3 +115,5 @@ class LoginController @Inject() (cache: CacheApi,cacheService: CacheTrait) exten
 
 
 }
+
+

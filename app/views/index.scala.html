@@ -1,3 +1,4 @@
+@()(implicit flash: Flash)
 @*
  * This template takes a single argument, a String containing a
  * message to display.
@@ -11,11 +12,20 @@
  *@
 @main("main") {
 <div>
- <div style="text-align:center; margin-top: 50px; font-size: 50px"><strong>Welcome to Login Application!!</strong></div>
-<div class="container" style="margin-top: 100px;margin-left: 50px;text-align:center; ">
+ <!--<div style="text-align:center; font-size: 40px; background-color: orange;"><strong>Welcome to Login Application!!</strong>-->
+  <!--<h4>Sign up/Login</h4>-->
+
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+   <div class="navbar-header">
+   <div style="text-align:center;">Login Application</div>
+   </div>
+   </div>
+  </nav>
+ @flash.get("Exist").getOrElse("")
+<div class="container" style="margin-top: 50px;margin-left: 50px;text-align:center; ">
  <button type="button" class="btn btn-success" onclick="location.href = '/sign';">sign up</button>
  <button type="button" class="btn btn-success" onclick="location.href = '/login';">Sign in</button>
-
 </div>
 </div>
 

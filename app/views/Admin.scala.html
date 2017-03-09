@@ -13,33 +13,33 @@
     <body>
 
 
-<nav class="navbar navbar-inverse ">
-<div class="container-fluid">
-<div class="navbar-header">
-<a class="navbar-brand">Admin</a>
-</div>
+<!--<nav class="navbar navbar-inverse ">-->
+<!--<div class="container-fluid">-->
+<!--<div class="navbar-header">-->
+<!--<a class="navbar-brand">Admin</a>-->
+<!--</div>-->
 
 
-<form action="@routes.HomeController.index()" method="post">
-<button class="btn btn-danger navbar-btn navbar-right ">Logout</button>
-</form>
-<div class="col-md-2"></div>
+<!--<form action="@routes.HomeController.index()" method="post">-->
+<!--<button class="btn btn-danger navbar-btn navbar-right ">Logout</button>-->
+<!--</form>-->
+<!--<div class="col-md-2"></div>-->
 
-</div>
-</nav>
-
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="#">Admin Privileges</a>-->
-        <!--</div>-->
-
-        <!--<ul class="nav navbar-nav navbar-right">-->
-            <!--<li><a href="@routes.AdminController.manageUsers"><span class="glyphicon glyphicon-user"></span> Manage Users</a></li>-->
-            <!--<li><a href="@routes.HomeController.index()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
+<!--</div>-->
 <!--</nav>-->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">UserNames</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="@routes.AdminController.manageUsers"><span class="glyphicon glyphicon-user"></span> Manage Users</a></li>
+            <li><a href="@routes.HomeController.index()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div style="text-align:center;margin-top:50px;font-size:20px;">
 <strong>UserName: </strong>  @user.username  <br>
@@ -49,11 +49,6 @@
 <strong>Email: </strong> @user.email
 
 </div>
-<br><br><br><br>
-<form action="@routes.AdminController.manageUsers" method="post">
-<button class="btn btn-success navbar-btn navbar-right ">Manage Users</button>
-
-</form>
 
 
     </body>

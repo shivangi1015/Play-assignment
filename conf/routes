@@ -25,7 +25,7 @@ POST /showProfile                        controllers.LoginController.processForm
 
 GET /profile                            controllers.LoginController.showProfile(username:String)
 
-POST /manage                                   controllers.AdminController.manageUsers
+GET   /manage                                   controllers.AdminController.manageUsers
 
 POST /usersuspended                                   controllers.AdminController.suspend(s: String)
 

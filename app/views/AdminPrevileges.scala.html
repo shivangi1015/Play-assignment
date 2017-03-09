@@ -1,12 +1,11 @@
-@(list: List[String])
-
+@(list: List[String])()(implicit flash: Flash)
 
 @main("user profiles description") {
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">UserNames</a>
+            <a class="navbar-brand" href="#">Admin Previleges</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
@@ -48,9 +47,14 @@
 
 <div class="container" style="font-size:20px;margin-top:30px;">
 <p>
+    <div class="container">
+        @flash.get("status").getOrElse("")
+    </div>
     @for(l <- list){
-   <div class="col-md-4"><strong> @l </strong> </div>
-    <div class="col-md-8">
+   <div class="col-md-5"><strong> @l </strong>
+</div>
+
+    <div class="col-md-7">
 <div class="col-md-2">
         <form action="@routes.AdminController.suspend(l)" method="post">
             <button type="submit" class="btn btn-danger">Suspend</button>

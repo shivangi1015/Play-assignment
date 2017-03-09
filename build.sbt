@@ -11,6 +11,8 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+  "org.mockito" % "mockito-all" % "1.9.5"
+
 )
 

@@ -17,4 +17,20 @@ class LoginControllerSpec extends PlaySpec with OneAppPerTest {
     }
 
   }
+
+  "showProfile route" should{
+
+    "hit the Profile page" in{
+      val login = route(app, FakeRequest(POST, "/showProfile")).get
+      status(login) equals (303)
+    }
+  }
+
+//  "profile route" should{
+//
+//    "show the Profile page" in{
+//      val login = route(app, FakeRequest(GET, "/profile")).get
+//      status(login) mustBe (OK)
+//    }
+//  }
 }

@@ -24,7 +24,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Welcome to my website!!")
+      contentAsString(home) must include ("Login Application")
     }
 
   }
